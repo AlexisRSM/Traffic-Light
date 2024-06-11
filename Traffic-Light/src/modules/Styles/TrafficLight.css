@@ -1,0 +1,47 @@
+.traffic-light {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+}
+.pole {
+    position: absolute; /* Position the pole relative to the container */
+    bottom: 109px; /* Adjust as needed to position the pole */
+    width: 10px; /* Adjusted width for the pole to be thinner */
+    height: 200px; /* Adjusted height for the pole */
+    background-color: #333; /* Dark color for the pole */
+    border-radius: 5px; /* Slight rounding for a more polished look */
+
+}
+
+.container {
+    background-color: #333; /* Dark background for the traffic light container */
+    width: 80px; /* Width of the traffic light */
+    padding: 20px;
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for a 3D effect */
+    display: flex;
+    flex-direction: column; /* Stack lights vertically */
+    align-items: center; /* Center lights horizontally */
+}
+
+.light {
+    width: 50px; /* Diameter of the lights */
+    height: 50px;
+    margin: 10px 0; /* Space between lights */
+    border-radius: 50%; /* Circular lights */
+    background-color: #333; /* Default background for the lights */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Shadow for a 3D effect */
+}
+
+.red {
+    background-color: red; /* Red light */
+}
+
+.yellow {
+    background-color: yellow; /* Yellow light */
+}
+
+.green {
+    background-color: green; /* Green light */
+}
