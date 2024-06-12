@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import TrafficLight from './modules/TrafficLight'
 import './modules/Styles/TrafficLight.css';
-import useFetch from './modules/useFetch'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-    
+
       <TrafficLight />
     </>
     
