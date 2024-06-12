@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -12,6 +12,26 @@ function TrafficLight() {
     });
 
 
+    function changeColor(color) {
+        if (color.one == "red") {
+            color.one = ""
+            color.two = "yellow"
+            color.three = ""
+        }
+        else if (color.two == "yellow") {
+            color.one = ""
+            color.two = ""
+            color.three = "green"
+        }
+        else if (color.three == "green") {
+            color.one = "red"
+            color.two = ""
+            color.three = ""
+        }
+        myInterval = setInterval(setColor(changeColor({ color })), 3000);
+    }
+
+/* useEffect() */
 
 
     return (
@@ -19,26 +39,10 @@ function TrafficLight() {
             <div className="row">
                 <div className="col-6 d-flex justify-content-end">
                     <button
-                        onClick={()=>{
-                            let clone = {...color}
-                            function changeColor(){
-                                if(color.one=="red"){
-                                    color.one=""
-                                    color.two="yellow"
-                                    color.three=""
-                                }
-                                else if(color.two=="yellow"){
-                                    color.one=""
-                                    color.two=""
-                                    color.three="green"
-                                }
-                                else if(color.three=="green"){
-                                    color.one="red"
-                                    color.two=""
-                                    color.three=""
-                                }
-                            myInterval = setInterval(changeColor(),3000);
-                            }
+                        onClick={() => {
+                            let clone={...color};
+                            changeColor(clone);
+                            clearInterval(myInterval);
                         }}
                         type="button" className="btn cycle btn-warning">Press To Cycle</button>
                 </div>
