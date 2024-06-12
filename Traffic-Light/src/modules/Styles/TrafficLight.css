@@ -7,9 +7,9 @@
 
 .pole {
     position: absolute;
-    bottom: 109px;
+    top:90%;
     width: 10px;
-    height: 200px;
+    height: 280px;
     background-color: #333;
     border-radius: 5px;
 }
@@ -23,6 +23,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position:relative;
 }
 
 .light {
@@ -41,8 +42,10 @@
 
 .yellow {
     background-color: yellow;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
 }
 
 .green {
     background-color: green;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
 }
