@@ -1,6 +1,6 @@
 .cycle {
-    position:absolute;
-    top:100%;
+    position: absolute;
+    top: 100%;
     background-color: #333;
     color: white;
     padding: 10px 20px;
@@ -9,11 +9,11 @@
     cursor: pointer;
     font-size: 36px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    
 }
+
 .add {
-    position:absolute;
-    top:100%;
+    position: absolute;
+    top: 100%;
     background-color: #333;
     color: white;
     padding: 10px 20px;
@@ -22,8 +22,8 @@
     cursor: pointer;
     font-size: 36px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    
 }
+
 .traffic-light {
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@
 
 .pole {
     position: absolute;
-    top:99%;
+    top: 99%;
     width: 10px;
     height: 280px;
     background-color: #333;
@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position:relative;
+    position: relative;
 }
 
 .light {
@@ -75,4 +75,9 @@
 .green {
     background-color: green;
     box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+.purple {
+    background-color: purple;
+    box-shadow: 0 0 20px rgba(128, 0, 128, 0.5);
 }
