@@ -5,58 +5,63 @@ function TrafficLight() {
         one: "red",
         two: "",
         three: "",
-        four: "" // Initially, the purple light is not set
+        four: "" //will be added with push of button
     });
-    /* const [intervalId, setIntervalId] = useState(null); */
+    const [intervalId, setIntervalId] = useState(null);
     const [hasPurple, setHasPurple] = useState(false); // Track if the purple light is added
+    const [isCycling, setIsCycling] = useState(false); // Track if the cycle is running
 
-    function changeColor() {
-        if (color.one === "red") {
-            if (hasPurple) {
-                setColor({ one: "", two: "", three: "", four: "purple" });
-            } else {
-                setColor({ one: "", two: "", three: "green", four: "" });
-            }
-        } else if (color.two === "yellow") {
-            setColor({ one: "red", two: "", three: "", four: "" });
-        } else if (color.three === "green") {
-            setColor({ one: "", two: "yellow", three: "", four: "" });
-        } else if (color.four === "purple") {
-            setColor({ one: "", two: "", three: "green", four: "" });
+    function changeColor(currentColor) {
+        if (currentColor.one === "red") {
+            return hasPurple ? { one: "", two: "", three: "", four: "purple" } : { one: "", two: "", three: "green", four: "" };
+        } else if (currentColor.two === "yellow") {
+            return { one: "red", two: "", three: "", four: "" };
+        } else if (currentColor.three === "green") {
+            return { one: "", two: "yellow", three: "", four: "" };
+        } else if (currentColor.four === "purple") {
+            return { one: "", two: "", three: "green", four: "" };
         }
+        return currentColor;
     }
-    
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            changeColor();
-        }, 2000);
-        /* setIntervalId(interval) */;
-
-        return () => clearInterval(interval); // Clean up the interval on component unmount
-    }, [color]);
+    //In order to cycle go thorugh purple light cycle need to be stopped 
+    //then purple added and only then the cycle will go through purple
+    const toggleCycle = () => {
+        if (isCycling) {
+            clearInterval(intervalId);
+            setIntervalId(null);
+            setIsCycling(false);
+        } else {
+            const interval = setInterval(() => {
+                setColor(prevColor => changeColor(prevColor));
+            }, 2000);
+            setIntervalId(interval);
+            setIsCycling(true);
+        }
+    };
 
     const addPurpleLight = () => {
         setHasPurple(true);
-        setColor(prevColor => ({ ...prevColor, four: "" }));
+        setColor(prevColor => changeColor(prevColor)); // Immediately update the state to incorporate the purple light
     };
 
+    useEffect(() => {
+        return () => clearInterval(intervalId); // Clean up the interval on component unmount
+    }, [intervalId]);
+
     return (
-        <>
+        <div className="wrapper">
             <div className="row">
                 <div className="col-6 d-flex justify-content-end">
                     <button
-                        onClick={() => {
-                            clearInterval(intervalId); // Clear the interval when button is clicked
-                            changeColor();
-                        }}
+                        onClick={toggleCycle} // Toggle the cycle when button is pressed
                         type="button"
                         className="btn cycle btn-warning"
                     >
-                        Press To Cycle
+                        {isCycling ? "Stop Cycle" : "Start Cycle"}
                     </button>
                 </div>
-                <div className="col-6 ">
+                <div className="col-6">
                     <button
                         type="button"
                         className="btn add color btn-warning"
@@ -91,7 +96,7 @@ function TrafficLight() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 
